@@ -1,10 +1,11 @@
 import tmi from "tmi.js"
 import dotenv from "dotenv"
-import { KeepAlive } from "./server"
+import { KeepAlive } from "./server.js"
 dotenv.config()
 
 const BOT_USERNAME = process.env.TWITCH_BOT_USERNAME
 const ACCESS_TOKEN = process.env.TWITCH_ACCESS_TOKEN
+
 
 // Define configuration options
 const client = new tmi.Client({
@@ -26,6 +27,7 @@ const client = new tmi.Client({
 client.on("message", async (channel, tags, message, self) => {
 	// Ignore echoed messages.
 	if (self) return
+	
 	if (message.toLowerCase() === "!code") {
 		// "@alca, heya!"
 		client.say(channel, `@${tags.username}, heya!`).catch(console.error)
@@ -33,7 +35,6 @@ client.on("message", async (channel, tags, message, self) => {
 })
 
 client.connect()
-
 KeepAlive()
 
 // // Create a client with our options
