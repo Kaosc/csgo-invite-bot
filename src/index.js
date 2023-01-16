@@ -31,9 +31,9 @@ clientTMI.on("message", async (channel, tags, message, self) => {
 	}
 })
 
-client.on("connected", (addr, port) => {
+clientTMI.on("connected", (addr, port) => {
 	console.log(`* Connected to ${addr}:${port}`)
 })
 
 clientTMI.connect()
-KeepAlive()
+// KeepAlive()
